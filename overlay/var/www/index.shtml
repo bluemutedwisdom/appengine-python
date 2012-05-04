@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="Content-Style-Type" content="text/css">
+        <meta http-equiv="Content-Script-Type" content="text/javascript">
+
+        <title>TurnKey AppEngine (Python)</title>
+        
+        <link rel="stylesheet" href="css/ui.tabs.css" type="text/css" media="print, projection, screen">
+        <link rel="stylesheet" href="css/base.css" type="text/css">
+
+        <script src="js/jquery-1.2.6.js" type="text/javascript"></script>
+        <script src="js/ui.core.js" type="text/javascript"></script>
+        <script src="js/ui.tabs.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(function() {
+                $('#container-1 > ul').tabs({ fx: { opacity: 'toggle'} });
+            });
+        </script>
+    </head>
+
+    <body>
+        <h1>TurnKey AppEngine (Python)</h1>
+        
+        <div id="container-1">
+            <ul>
+                <li><a href="#cp"><span>Control Panel</span></a></li>
+                <li><a href="#gae"><span>AppEngine</span></a></li>
+            </ul>
+
+            <div id="cp">
+                <div class="fragment-content">
+                    <div>
+                        <a href="https://<!--#echo var="HTTP_HOST"-->:12320">
+                        <img src="images/shell.png"/>Web Shell</a>
+                    </div>
+                    <div>
+                        <a href="https://<!--#echo var="HTTP_HOST"-->:12321">
+                        <img src="images/webmin.png"/>Webmin</a>
+                    </div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+
+                    <h2>Resources and references</h2>
+                    <ul>
+                        <li><a href="docs/appengine/docs/whatisgoogleappengine.html">What is Google AppEngine?</a> <a href="docs/appengine/whyappengine.html">Why should I use it?</a></li>
+                        <li><a href="docs/appengine/kb/index.html">Check out the FAQ</a>, <a href="docs/appengine/casestudies.html">case studies</a> and <a href="docs/appengine/articles/index.html">articles</a></li>
+
+                        <li><a href="http://www.turnkeylinux.org/appengine-python">TurnKey AppEngine Python release notes</a></li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div id="gae">
+                <div class="fragment-content">
+
+                <div class="icon"><img src="/images/youtube.png"/></div><br/>
+                <p><a href="http://www.youtube.com/watch?v=bfgO-LXGpTM">Developing and deploying an application on Google AppEngine</a></p>
+                <p><a href="http://www.youtube.com/watch?v=v1gTI4BOPUw">Great talk by Guido van Rossum at Google I/O</a></p>
+                
+                <p><b>Local documentation:</b>
+                <a href="docs/appengine/docs/python/gettingstarted/index.html">
+                Getting started</a>, 
+                <a href="docs/appengine/docs/python/overview.html">
+                AppEngine Python overview</a></p>
+
+<h2>Template applications</h2>
+
+<ul>
+    <li>Log into the appliance via SSH or the 
+        <a href="https://<!--#echo var="HTTP_HOST"-->:12320">Web Shell</a></li>
+
+    <li>Change into the specified directory, and launch the development server</li>
+
+    <li>Browse to the 
+    <a href="http://<!--#echo var="HTTP_HOST"-->:8080">application</a> and its
+    <a href="http://<!--#echo var="HTTP_HOST"-->:8080/_ah/admin">
+    administrative console</a></li>
+</ul>
+
+<h3>CGI template</h3>
+<pre>
+cd /var/www/google_appengine
+./dev_appserver.py -a 0.0.0.0 -p 8080 --smtp_host=127.0.0.1 template-cgi
+</pre>
+
+<h3>WebApp template</h3>
+<pre>
+cd /var/www/google_appengine
+./dev_appserver.py -a 0.0.0.0 -p 8080 --smtp_host=127.0.0.1 template-webapp
+</pre>
+
+<h3>Django template (<a href="http://www.allbuttonspressed.com/projects/djangoappengine">NoSQL</a>)</h3>
+<pre>
+cd /var/www/google_appengine/template-django
+./manage.py runserver 0.0.0.0:8080
+</pre>
+
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
