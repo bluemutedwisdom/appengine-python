@@ -1,0 +1,39 @@
+#!/bin/sh -ex
+
+SRC=/usr/local/src
+GAE_PYTHON=/var/www/google_appengine
+
+# unpack google appengine
+NAME=google_appengine
+unzip $SRC/${NAME}_*.zip -d $SRC; rm $SRC/${NAME}_*.zip
+mv -T $SRC/$NAME $GAE_PYTHON
+chown -R root:root $GAE_PYTHON
+
+# install antlr (appengine django nonrel)
+tar -zxf $SRC/antlr-*.tar.gz -C $SRC
+cd $SRC/antlr-*/runtime/Python
+python setup.py install
+cd -
+
+# appengine python templates
+mv $SRC/template-webapp $GAE_PYTHON
+mv $GAE_PYTHON/new_project_template $GAE_PYTHON/template-cgi
+tar -zxf $SRC/template-django.tar.gz -C $GAE_PYTHON/; rm $SRC/template-django.tar.gz
+
+# tweaks for template-django
+ln -s $GAE_PYTHON/lib/webob_1_1_1 $GAE_PYTHON/lib/webob
+
+cat > /root/.bashrc.d/google_appengine <<EOF
+# required for google appengine (django)
+if \$(echo \$PATH | grep -q -v $GAE_PYTHON); then
+    PATH="\$PATH:$GAE_PYTHON"
+fi
+EOF
+chmod +x /root/.bashrc.d/google_appengine
+
+# tweak tkl-webcp
+sed -i "s|width: 520px;|width: 580px;|" /var/www/css/base.css
+
+# clean up
+rm -rf $SRC/*
+
