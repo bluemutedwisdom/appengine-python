@@ -1,11 +1,6 @@
 #include <turnkey/base>
+#include <turnkey/appengine>
 
 python-imaging           /* required for appengine image API */
 python-setuptools
 
-lighttpd                 /* used to power appengine documentation */
-
-postfix                  /* support appengine email */
-webmin-postfix
-
-unzip
