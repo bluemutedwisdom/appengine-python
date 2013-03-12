@@ -3,6 +3,7 @@
 
 python-imaging           /* required for appengine image API */
 python-setuptools
+ipython
 
 mercurial                /* required for cloning django-autoload */
 
