@@ -5,24 +5,28 @@ GAE_PYTHON=/var/www/google_appengine
 
 # unpack google appengine
 NAME=google_appengine
-unzip $SRC/${NAME}_*.zip -d $SRC; rm $SRC/${NAME}_*.zip
+unzip -q $SRC/${NAME}_*.zip -d $SRC
+rm $SRC/${NAME}_*.zip
 mv -T $SRC/$NAME $GAE_PYTHON
 chown -R root:root $GAE_PYTHON
 
-# install antlr (appengine django nonrel)
-tar -zxf $SRC/antlr-*.tar.gz -C $SRC
-cd $SRC/antlr-*/runtime/Python
-python setup.py install
-cd -
-
-# appengine python templates
-mv $SRC/template-webapp $GAE_PYTHON
+# setup cgi template
 mv $GAE_PYTHON/new_project_template $GAE_PYTHON/template-cgi
-tar -zxf $SRC/template-django.tar.gz -C $GAE_PYTHON/; rm $SRC/template-django.tar.gz
 
-# tweaks for template-django
-ln -s $GAE_PYTHON/lib/webob_1_1_1 $GAE_PYTHON/lib/webob
+# setup webapp templates
+mv $SRC/template-webapp $GAE_PYTHON/template-webapp
 
+# setup django template
+TEMPLATE=$GAE_PYTHON/template-django
+mv $SRC/django-testapp $TEMPLATE
+rm -rf $TEMPLATE/.git
+ln -s $SRC/django-nonrel/django $TEMPLATE/django
+ln -s $SRC/django-autoload/autoload $TEMPLATE/autoload
+ln -s $SRC/django-dbindexer/dbindexer $TEMPLATE/dbindexer
+ln -s $SRC/djangoappengine/djangoappengine $TEMPLATE/djangoappengine
+ln -s $SRC/djangotoolbox/djangotoolbox $TEMPLATE/djangotoolbox
+
+# add sdk to path (required for django template)
 cat > /root/.bashrc.d/google_appengine <<EOF
 # required for google appengine (django)
 if \$(echo \$PATH | grep -q -v $GAE_PYTHON); then
@@ -33,7 +37,4 @@ chmod +x /root/.bashrc.d/google_appengine
 
 # tweak tkl-webcp
 sed -i "s|width: 520px;|width: 580px;|" /var/www/css/base.css
-
-# clean up
-rm -rf $SRC/*
 

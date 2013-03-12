@@ -16,4 +16,15 @@ dl http://googleappengine.googlecode.com/files/${VERSION} $SRC
 echo "$SHA1SUM  $VERSION" > $SRC/$VERSION.sha1
 cd $SRC; sha1sum -c $VERSION.sha1; rm $VERSION.sha1; cd -
 
+# django appengine: http://www.allbuttonspressed.com/projects/djangoappengine
+[ "$FAB_HTTP_PROXY" ] && export HTTP_PROXY=$FAB_HTTP_PROXY
+cd $SRC
+git clone https://github.com/django-nonrel/django-testapp.git
+git clone https://github.com/django-nonrel/django-nonrel.git
+git clone https://github.com/django-nonrel/django-dbindexer.git
+git clone https://github.com/django-nonrel/djangoappengine.git
+git clone https://github.com/django-nonrel/djangotoolbox.git
+hg clone https://bitbucket.org/twanschik/django-autoload
+cd -
+unset HTTP_PROXY
 
