@@ -46,9 +46,8 @@
 
                     <h2>Resources and references</h2>
                     <ul>
-                        <li><a href="docs/appengine/docs/whatisgoogleappengine.html">What is Google AppEngine?</a> <a href="docs/appengine/whyappengine.html">Why should I use it?</a></li>
-                        <li><a href="docs/appengine/kb/index.html">Check out the FAQ</a>, <a href="docs/appengine/casestudies.html">case studies</a> and <a href="docs/appengine/articles/index.html">articles</a></li>
-
+                        <li><a href="https://developers.google.com/appengine/docs/whatisgoogleappengine">What is Google AppEngine?</a> <a href="https://developers.google.com/appengine/whyappengine">Why should I use it?</a></li>
+                        <li><a href="https://developers.google.com/appengine/kb/">Check out the FAQ</a>, <a href="https://cloud.google.com/customers/">case studies</a> and <a href="https://developers.google.com/appengine/articles/">articles</a></li>
                         <li><a href="http://www.turnkeylinux.org/appengine-python">TurnKey AppEngine Python release notes</a></li>
                     </ul>
 
@@ -62,11 +61,9 @@
                 <p><a href="http://www.youtube.com/watch?v=bfgO-LXGpTM">Developing and deploying an application on Google AppEngine</a></p>
                 <p><a href="http://www.youtube.com/watch?v=v1gTI4BOPUw">Great talk by Guido van Rossum at Google I/O</a></p>
                 
-                <p><b>Local documentation:</b>
-                <a href="docs/appengine/docs/python/gettingstarted/index.html">
-                Getting started</a>, 
-                <a href="docs/appengine/docs/python/overview.html">
-                AppEngine Python overview</a></p>
+                <p><b>Online documentation:</b>
+                <a href="https://developers.google.com/appengine/docs/python/gettingstarted/">Getting started</a>, 
+                <a href="https://developers.google.com/appengine/docs/python/overview">AppEngine Python overview</a></p>
 
 <h2>Template applications</h2>
 
