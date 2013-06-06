@@ -10,7 +10,7 @@ turnkey-appengine-python-12.1 (1) turnkey; urgency=low
     - Added mercurial (required for template-django dep download).
     - Added ipython (convenience).
 
-  * Hardcoded component versions:
+  * Upstream source component versions:
 
     google_appengine            1.7.5
 
