@@ -16,15 +16,25 @@ mv $GAE_PYTHON/new_project_template $GAE_PYTHON/template-cgi
 # setup webapp templates
 mv $SRC/template-webapp $GAE_PYTHON/template-webapp
 
-# setup django template
+# setup django template: http://www.allbuttonspressed.com/projects/djangoappengine
 TEMPLATE=$GAE_PYTHON/template-django
-mv $SRC/django-testapp $TEMPLATE
+git clone https://github.com/django-nonrel/django-testapp.git $TEMPLATE
 rm -rf $TEMPLATE/.git
-ln -s $SRC/django-nonrel/django $TEMPLATE/django
-ln -s $SRC/django-autoload/autoload $TEMPLATE/autoload
-ln -s $SRC/django-dbindexer/dbindexer $TEMPLATE/dbindexer
-ln -s $SRC/djangoappengine/djangoappengine $TEMPLATE/djangoappengine
-ln -s $SRC/djangotoolbox/djangotoolbox $TEMPLATE/djangotoolbox
+cd $TEMPLATE
+
+mkdir -p build
+pip install --download='./build' --no-install -r requirements.txt
+unzip -q build/django-autoload-*.zip -d build
+unzip -q build/django-dbindexer-*.zip -d build
+unzip -q build/django-nonrel-*.zip -d build
+unzip -q build/djangoappengine-*.zip -d build
+unzip -q build/djangotoolbox-*.zip -d build
+cp -r build/django-autoload/autoload ./autoload
+cp -r build/django-dbindexer/dbindexer ./dbindexer
+cp -r build/django-nonrel/django ./django
+cp -r build/djangoappengine/djangoappengine ./djangoappengine
+cp -r build/djangotoolbox/djangotoolbox ./djangotoolbox
+rm -rf ./djangoappengine/djangoappengine.egg-info
 
 # add sdk to path (required for django template)
 cat > /root/.bashrc.d/google_appengine <<EOF
